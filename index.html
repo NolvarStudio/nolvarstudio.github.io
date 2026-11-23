@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'sha256-lPStxgXBctYQUbyEtOGLrcd7cvBG9vuhxwYoT8veAwg='; font-src 'none'; script-src 'sha256-H9FX66xgdUQTjlBahQAij6WFu66lgDvO9zqPlvZ32lM='; img-src 'none'; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nolvar Studio</title>
+<meta name="description" content="Nolvar Studio is an AI ad creative studio for Meta. Opening soon.">
+<style>
+/* VOICE occasion: a quiet, premium studio front door
+   IDEA a camera viewfinder framing the studio's name, recording light on
+   PICTURE the full first screen is the viewfinder: corner brackets, faint thirds grid, the wordmark centred, a pulsing red rec dot
+   COLOUR one fixed darkroom palette: near-black ground, warm white ink, grey detail, one red
+   TYPE the system sans throughout (SF on Apple, Segoe on Windows), heavy for the wordmark; no outside requests
+   LAYOUT one screen: viewfinder fills it; line and contact sit inside the frame's lower edge; phone: same stack, smaller */
+:root{color-scheme:dark;--bg:#0c0c0d;--ink:#f2efe9;--soft:#8d8b87;--line:rgba(242,239,233,.14);--red:#e5352b}
+*{box-sizing:border-box;min-width:0}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.page{min-height:100%;display:grid;grid-template-rows:auto 1fr auto;padding:clamp(16px,3vw,32px) max(5vw,16px)}
+.top,.bottom{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--soft)}
+.rec{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.rec i{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 12px var(--red);animation:pulse 2.4s ease-in-out infinite}
+.frame{position:relative;margin-block:clamp(16px,3vw,28px);display:grid;place-items:center;min-height:clamp(420px,72vh,760px);isolation:isolate}
+.frame::before{content:"";position:absolute;inset:0;z-index:-1;background:
+ linear-gradient(var(--line),var(--line)) 33.33% 0/1px 100% no-repeat,
+ linear-gradient(var(--line),var(--line)) 66.66% 0/1px 100% no-repeat,
+ linear-gradient(var(--line),var(--line)) 0 33.33%/100% 1px no-repeat,
+ linear-gradient(var(--line),var(--line)) 0 66.66%/100% 1px no-repeat;opacity:.55}
+.frame::after{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(60% 55% at 50% 48%,rgba(242,239,233,.07),transparent 70%)}
+.c{position:absolute;width:clamp(28px,4vw,48px);height:clamp(28px,4vw,48px);border:0 solid var(--ink)}
+.c.tl{top:0;left:0;border-top-width:2px;border-left-width:2px}
+.c.tr{top:0;right:0;border-top-width:2px;border-right-width:2px}
+.c.bl{bottom:0;left:0;border-bottom-width:2px;border-left-width:2px}
+.c.br{bottom:0;right:0;border-bottom-width:2px;border-right-width:2px}
+.focus{position:absolute;left:50%;top:50%;width:22px;height:22px;transform:translate(-50%,-50%);opacity:.35}
+.focus::before,.focus::after{content:"";position:absolute;background:var(--ink)}
+.focus::before{left:50%;top:0;width:1px;height:100%}
+.focus::after{top:50%;left:0;height:1px;width:100%}
+.centre{text-align:center;padding:clamp(56px,8vw,96px) 16px;position:relative;z-index:1;background:radial-gradient(closest-side,var(--bg) 55%,transparent)}
+.word{margin:0;font-family:inherit;font-weight:800;font-size:clamp(48px,11vw,150px);line-height:.95;letter-spacing:-.045em}
+.word span{color:var(--red)}
+.sub{margin:clamp(14px,2vw,22px) 0 0;font-family:inherit;font-weight:300;font-size:clamp(17px,2vw,24px);letter-spacing:.01em;color:var(--ink);opacity:.86}
+.soon{margin-top:clamp(22px,3vw,34px);display:inline-flex;align-items:center;gap:14px;color:var(--soft);font-size:14px}
+.soon::before,.soon::after{content:"";width:36px;height:1px;background:var(--soft);opacity:.6}
+.mails{margin-top:clamp(26px,3.5vw,40px);display:flex;flex-direction:column;align-items:center;gap:2px}
+.mails .lab{font-size:12px;color:var(--soft);margin-bottom:6px}
+.mail{display:inline-block;font-size:16px;letter-spacing:.01em;text-decoration:none;color:var(--ink);opacity:.88;padding:6px 0;transition:color .2s,opacity .2s}
+.inl{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.mail:hover{color:var(--red);opacity:1}
+.social{display:flex;gap:22px;flex-wrap:wrap}
+.social a,.bottom a{text-decoration:none;color:var(--soft);padding-block:12px;transition:color .2s}
+.social a:hover,.bottom a:hover{color:var(--ink)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--red);outline-offset:4px}
+.meta{white-space:nowrap}
+dialog{max-width:640px;width:calc(100% - 32px);background:#151516;color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:28px}
+dialog::backdrop{background:rgba(0,0,0,.7)}
+dialog h2{font-family:inherit;font-weight:700;font-weight:800;font-size:24px;letter-spacing:-.02em;margin:0 0 14px}
+dialog p{color:#bdbab4;margin:0 0 12px}
+dialog strong{color:var(--ink)}
+.close{float:right;background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;min-height:40px;padding:0 16px;font:inherit;cursor:pointer}
+.linkbtn{background:none;border:0;color:var(--soft);font:inherit;cursor:pointer;padding:12px 0}
+.linkbtn:hover{color:var(--ink)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+@media(max-width:600px){.meta.hide{display:none}.frame{min-height:440px}.frame::before{background:linear-gradient(var(--line),var(--line)) 33.33% 0/1px 100% no-repeat,linear-gradient(var(--line),var(--line)) 66.66% 0/1px 100% no-repeat}}
+@media(prefers-reduced-motion:reduce){.rec i{animation:none}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="top">
+    <span class="rec"><i></i>Opening soon</span>
+    <nav class="social" aria-label="Social">
+      <a rel="noopener noreferrer" href="https://instagram.com/nolvarstudio">Instagram</a>
+      <a rel="noopener noreferrer" href="https://x.com/nolvarstudio">X</a>
+      <a rel="noopener noreferrer" href="https://youtube.com/@nolvarstudio">YouTube</a>
+    </nav>
+  </header>
+
+  <main class="frame" aria-label="Nolvar Studio">
+    <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+    <span class="focus" aria-hidden="true"></span>
+    <div class="centre">
+      <h1 class="word">Nolvar<span>.</span></h1>
+      <p class="sub">AI ad creative studio</p>
+      <div class="soon">Website in production</div>
+      <div class="mails" id="contact"><span class="lab">Contact</span><a class="mail em" data-u="mike" data-d="nolvarstudio.com" href="#contact">mike at nolvarstudio dot com</a><a class="mail em" data-u="mario" data-d="nolvarstudio.com" href="#contact">mario at nolvarstudio dot com</a></div>
+    </div>
+  </main>
+
+  <footer class="bottom">
+    <span class="meta">© 2026 Nolvar Studio</span>
+    <span class="meta hide">Statics · Carousels · Short video</span>
+    <button class="linkbtn" id="openPrivacy" type="button">Privacy</button>
+  </footer>
+</div>
+
+<dialog id="privacy" aria-labelledby="ptitle">
+  <button class="close" id="closePrivacy" type="button">Close</button>
+  <h2 id="ptitle">Privacy notice</h2>
+  <p><strong>Who we are.</strong> Nolvar Studio, run by Mario Gjurra. Contact: <a class="inl em" data-u="mario" data-d="nolvarstudio.com" href="#contact">mario at nolvarstudio dot com</a>.</p>
+  <p><strong>What we collect.</strong> Business contact details of people at companies we may work with: name, job title, company, business email address and the company's public ads. We get them from public sources such as company websites, LinkedIn and Meta's Ad Library, and from business contact databases.</p>
+  <p><strong>Why.</strong> To contact businesses about our ad creative services. The legal basis is our legitimate interest in business-to-business marketing (Article 6(1)(f) GDPR). We send a few relevant messages and stop when asked.</p>
+  <p><strong>How long.</strong> Up to 12 months after our last contact, unless you become a client.</p>
+  <p><strong>Who else sees it.</strong> Our email and outreach providers process it on our behalf. We don't sell data.</p>
+  <p><strong>Your rights.</strong> You can ask to see, correct or delete your data, or object to being contacted, by replying to any of our emails or writing to <a class="inl em" data-u="mario" data-d="nolvarstudio.com" href="#contact">mario at nolvarstudio dot com</a>. Opt-outs are handled the same day. You can also complain to your data protection authority.</p>
+  <p><strong>This website</strong> uses no cookies and no analytics.</p>
+</dialog>
+
+<script>
+{
+  const d=document.getElementById('privacy');
+  const open=()=>{try{d.showModal()}catch(e){d.setAttribute('open','')}};
+  document.getElementById('openPrivacy').addEventListener('click',open);
+  document.getElementById('closePrivacy').addEventListener('click',()=>d.close());
+  d.addEventListener('click',e=>{if(e.target===d)d.close()});
+  if(location.hash==='#privacy')open();
+  for(const a of document.querySelectorAll('.em')){const m=a.dataset.u+'@'+a.dataset.d;a.textContent=m;a.href='mailto:'+m}
+}
+</script>
+</body>
+</html>
